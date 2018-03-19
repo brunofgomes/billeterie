@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -29,6 +30,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
  
 public class Fenetre extends JFrame implements ActionListener {
 	private JPanel pan = new JPanel();
@@ -40,6 +42,7 @@ public class Fenetre extends JFrame implements ActionListener {
 	private JComboBox b11 = new JComboBox(tab);
 	private JRadioButton b12 = new JRadioButton ("Assise");
 	private JRadioButton b13 = new JRadioButton ("Debout");
+	private ButtonGroup bg = new ButtonGroup();
 	
 	public Fenetre() {
 		this.setTitle("Billeterie");
@@ -61,6 +64,7 @@ public class Fenetre extends JFrame implements ActionListener {
 		JPanel b7 = new JPanel();
 		b7.setLayout(new BoxLayout(b7, BoxLayout.LINE_AXIS));
 		b7.add(b8);
+		b8.setName("textButton");
 		//b7.setPreferredSize(new Dimension(80, 60));
 		b7.setMaximumSize(new Dimension(600, 60));
 		//b7.setAlignmentX(CENTER_ALIGNMENT);
@@ -124,6 +128,12 @@ public class Fenetre extends JFrame implements ActionListener {
 		// Bouton Radio
 		JPanel b2 = new JPanel();
 		b2.setLayout(new BoxLayout(b2, BoxLayout.PAGE_AXIS));
+		bg.add(b12);
+		b12.setActionCommand("Assise");
+		b13.setActionCommand("Debout");
+		bg.add(b13);
+		b12.setName("1");
+		b13.setName("2");
 		b2.add(b12);
 		b2.add(b13);
 		//b2.setPreferredSize(new Dimension(80, 60));
@@ -139,6 +149,7 @@ public class Fenetre extends JFrame implements ActionListener {
 		//b1.setMaximumSize(new Dimension(600, 60));
 		//b1.setAlignmentX(CENTER_ALIGNMENT);
 		b1.setBorder(BorderFactory.createEmptyBorder(50, 10, 10, 10));
+		b0.setName("myButton");
 		b0.addActionListener(this);
 		
 		
@@ -165,6 +176,7 @@ public class Fenetre extends JFrame implements ActionListener {
 	
 	// Recupere le form en fichier XML
 		public void actionPerformed(ActionEvent arg0) { 
+
 
 			try {
 
@@ -211,6 +223,13 @@ public class Fenetre extends JFrame implements ActionListener {
 				infos.appendChild(concert);
 				
 				
+				
+				// typeplace elements
+				Element place = doc.createElement("TypePlace");
+				place.appendChild(doc.createTextNode(bg.getSelection().getActionCommand()));
+				infos.appendChild(place);
+				
+				
 
 				// write the content into xml file
 				TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -232,5 +251,10 @@ public class Fenetre extends JFrame implements ActionListener {
 			  }
 
 			
-		  } 
+		  }
+		
+		public static void main(String[] args) {
+			 
+			new Fenetre();
+		}
 	}
