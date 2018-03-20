@@ -38,7 +38,7 @@ public class Fenetre extends JFrame implements ActionListener {
 	private JTextField b8 = new JTextField();
 	private JTextField b9 = new JTextField();
 	private JTextField b10 = new JTextField();
-	String[] tab = {"BIG", "FLO", "ET", "OLI"};
+	String[] tab = {"BIG flo pour 40 euros", "Orelsan pour 30 euros", "ACDC pour 45 euros", "SARDOU pour 10 euros"};
 	private JComboBox b11 = new JComboBox(tab);
 	private JRadioButton b12 = new JRadioButton ("Assise");
 	private JRadioButton b13 = new JRadioButton ("Debout");
