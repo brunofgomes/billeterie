@@ -57,17 +57,12 @@ public class Fenetre extends JFrame implements ActionListener {
 		JLabel l1 = new JLabel("Nom :");
 		p1.setLayout(new BoxLayout(p1, BoxLayout.LINE_AXIS));
 		p1.add(l1);
-		//p1.add(Box.createHorizontalGlue());
-		//p1.setAlignmentX(RIGHT_ALIGNMENT);
 		
 		// Champ texte Nom
 		JPanel b7 = new JPanel();
 		b7.setLayout(new BoxLayout(b7, BoxLayout.LINE_AXIS));
-		b7.add(b8);
-		b8.setName("textButton");
-		//b7.setPreferredSize(new Dimension(80, 60));
+		b7.add(b8); 
 		b7.setMaximumSize(new Dimension(600, 60));
-		//b7.setAlignmentX(CENTER_ALIGNMENT);
 		b7.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		
 		// Texte Prenom
@@ -81,9 +76,7 @@ public class Fenetre extends JFrame implements ActionListener {
 		JPanel b6 = new JPanel();
 		b6.setLayout(new BoxLayout(b6, BoxLayout.LINE_AXIS));
 		b6.add(b9);
-		//b6.setPreferredSize(new Dimension(80, 60));
 		b6.setMaximumSize(new Dimension(600, 60));
-		//b6.setAlignmentX(CENTER_ALIGNMENT);
 		b6.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		
 		// Texte Email
@@ -97,9 +90,7 @@ public class Fenetre extends JFrame implements ActionListener {
 		JPanel b5 = new JPanel();
 		b5.setLayout(new BoxLayout(b5, BoxLayout.LINE_AXIS));
 		b5.add(b10);
-		//b5.setPreferredSize(new Dimension(80, 60));
 		b5.setMaximumSize(new Dimension(600, 60));
-		//b5.setAlignmentX(CENTER_ALIGNMENT);
 		b5.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		
 		// Texte Type concert
@@ -113,9 +104,7 @@ public class Fenetre extends JFrame implements ActionListener {
 		JPanel b4 = new JPanel();
 		b4.setLayout(new BoxLayout(b4, BoxLayout.LINE_AXIS));
 		b4.add(b11);
-		//b4.setPreferredSize(new Dimension(80, 60));
 		b4.setMaximumSize(new Dimension(600, 60));
-		//b4.setAlignmentX(CENTER_ALIGNMENT);
 		b4.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		
 		// Texte Type place
@@ -132,12 +121,8 @@ public class Fenetre extends JFrame implements ActionListener {
 		b12.setActionCommand("Assise");
 		b13.setActionCommand("Debout");
 		bg.add(b13);
-		b12.setName("1");
-		b13.setName("2");
 		b2.add(b12);
 		b2.add(b13);
-		//b2.setPreferredSize(new Dimension(80, 60));
-		//b2.setMaximumSize(new Dimension(1400, 60));
 		b2.setAlignmentX(CENTER_ALIGNMENT);
 		b2.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		
@@ -145,9 +130,6 @@ public class Fenetre extends JFrame implements ActionListener {
 		JPanel b1 = new JPanel();
 		b1.setLayout(new BoxLayout(b1, BoxLayout.LINE_AXIS));
 		b1.add(b0);
-		//b1.setPreferredSize(new Dimension(80, 60));
-		//b1.setMaximumSize(new Dimension(600, 60));
-		//b1.setAlignmentX(CENTER_ALIGNMENT);
 		b1.setBorder(BorderFactory.createEmptyBorder(50, 10, 10, 10));
 		b0.setName("myButton");
 		b0.addActionListener(this);
@@ -192,13 +174,10 @@ public class Fenetre extends JFrame implements ActionListener {
 				Element infos = doc.createElement("infos");
 				rootElement.appendChild(infos);
 
-				// set attribute to staff element
+				// set attribute to infos element
 				Attr attr = doc.createAttribute("id");
 				attr.setValue("1");
 				infos.setAttributeNode(attr);
-
-				// shorten way
-				// staff.setAttribute("id", "1");
 
 				// name elements
 				Element nom = doc.createElement("Nom");
@@ -215,22 +194,16 @@ public class Fenetre extends JFrame implements ActionListener {
 				email.appendChild(doc.createTextNode(b10.getText()));
 				infos.appendChild(email);
 				
-				
-
 				// deroulant elements
 				Element concert = doc.createElement("concert");
 				concert.appendChild(doc.createTextNode(b11.getSelectedItem().toString()));
 				infos.appendChild(concert);
-				
-				
 				
 				// typeplace elements
 				Element place = doc.createElement("TypePlace");
 				place.appendChild(doc.createTextNode(bg.getSelection().getActionCommand()));
 				infos.appendChild(place);
 				
-				
-
 				// write the content into xml file
 				TransformerFactory transformerFactory = TransformerFactory.newInstance();
 				Transformer transformer = transformerFactory.newTransformer();
